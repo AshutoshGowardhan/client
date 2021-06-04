@@ -1,13 +1,21 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route,Link } from 'react-router-dom';
 
 const PageOne = () => {
-    return <di>PageOne</di>
+    return (
+    <di>
+        PageOne
+        <Link to="/pagetwo">Navigate to Page Two</Link>
+    </di>
+    )
 }
 const PageTwo = () => {
-    return <di>
+    return (
+    <di>
         <button>Click Me</button>
+        <Link to="/">Navigate to Page One</Link>
     </di>
+    )
 }
 const App = () => {
     return (
@@ -15,7 +23,7 @@ const App = () => {
             <BrowserRouter>
             <div>
                 <Route path="/" exact component={PageOne} />
-                <Route path="/pageTwo" exact component={PageTwo} />
+                <Route path="/pagetwo" exact component={PageTwo} />
             </div>
             </BrowserRouter>
         </div>
