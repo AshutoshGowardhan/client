@@ -3,8 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 
 class StreamCreate extends React.Component {
     renderInput(formProps) {
-        return <input onChange={formProps.input.onChange}
-        value={formProps.input.value}/>;
+        return <input {...formProps.input}/>
     }
     render() {
         return(
