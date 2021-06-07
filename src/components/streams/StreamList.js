@@ -1,5 +1,5 @@
 import React from 'react';
-import {fetchStreams} from '../../actions';
+import { fetchStreams } from '../../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -10,14 +10,14 @@ class StreamList extends React.Component {
 
 
     renderAdmin = (stream) => {
-        if(stream.userId === this.props.currentUserId) {
+        if (stream.userId === this.props.currentUserId) {
             return (
                 <div className="right floated content">
-                    <button className="ui button primary">
+                    <Link to={`/streams/edit/${stream.id}`} className="ui button primary">
                         Edit
-                    </button>
+                    </Link>
                     <button className="ui button negative">
-                        Edit
+                        Delete
                     </button>
                 </div>
             )
@@ -29,7 +29,7 @@ class StreamList extends React.Component {
             return (
                 <div className="item" key={stream.id}>
                     {this.renderAdmin(stream)}
-                    <i className="large middle aligned icon camera"/>
+                    <i className="large middle aligned icon camera" />
                     <div className="content">
                         {stream.title}
                         <div className="description">{stream.description}</div>
@@ -40,18 +40,18 @@ class StreamList extends React.Component {
     }
 
     renderCreate = () => {
-        if(this.props.isSignedIn) {
+        if (this.props.isSignedIn) {
             return (
-                <div style={{textAlign:'right'}}>
+                <div style={{ textAlign: 'right' }}>
                     <Link to="/streams/new" className="ui button primary">
-                    Create Stream
+                        Create Stream
                     </Link>
                 </div>
-            )       
+            )
         }
     }
 
-    
+
     render() {
         console.log(this.props.streams)
         return (
@@ -71,7 +71,7 @@ const mapStateToProps = (state) => {
         streams: Object.values(state.streams),
         currentUserId: state.auth.userId,
         isSignedIn: state.auth.isSignedIn
-     };
+    };
 }
 
-export default connect(mapStateToProps,{fetchStreams})(StreamList);
+export default connect(mapStateToProps, { fetchStreams })(StreamList);
